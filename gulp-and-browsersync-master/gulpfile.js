@@ -1,46 +1,39 @@
-var gulp = require('gulp');  
-var sass = require('gulp-sass');  
-var browserSync = require('browser-sync'); 
-var reload = browserSync.reload;
-var minifycss = require('gulp-minify-css');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
+// Load plugins
+const gulp = require("gulp");
+const sass = require("gulp-sass");
+const browserSync = require("browser-sync").create();
 
-gulp.task('scripts', function() {
-  return gulp.src([
-    /* Add your JS files here, they will be combined in this order */
-    'src/js/main.js',
-    'src/js/other.js'
+function style() {
+  return (
+    gulp
+      .src('./src/scss/**/*.scss')
+      .pipe(sass())
+      .pipe(gulp.dest('./css'))
+      .pipe(browserSync.stream())
+  )
+}
 
-    ])
-    .pipe(concat('scripts.js'))
-    .pipe(gulp.dest('js'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('./js'));
-});
+function scripts() {
+  return (
+    gulp
+      .src(["./src/js/*"])
+      .pipe(gulp.dest("./js/scripts/"))
+      .pipe(browserSync.stream())
+  );
+}
 
-gulp.task('sass', function () {  
-    gulp.src('src/scss/main.scss')
-        .pipe(sass({includePaths: ['scss']}))
-        .pipe(gulp.dest('./css'))
-        .pipe(minifycss());
-});
-gulp.task('html', function () {  
-    gulp.src('./*.html')
-        .pipe(gulp.dest('./'));
-});
-gulp.task('browser-sync', function() {  
-    browserSync.init(["css/*.css", "js/*.js"], {
-        server: {
-            baseDir: "./"
-        }
-    });
-});
+function watch() {
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    },
+    port: 3000
+  });
+  gulp.watch("./src/scss/**/*.scss", style);
+  gulp.watch("./*.html").on("change", browserSync.reload);
+  gulp.watch("./src/js/scripts/*.js").on("change", browserSync.reload);
+}
 
-gulp.task('default', ['sass', 'browser-sync'], function () {  
-    gulp.watch("src/scss/**/*.scss", ['sass']).on("change", reload);
-    gulp.watch("./*.html", ['html']).on("change", reload);
-    gulp.watch("src/js/*.js", ['scripts']).on("change", reload);
-});
+exports.style = style;
+exports.scripts = scripts;
+exports.watch = watch;
