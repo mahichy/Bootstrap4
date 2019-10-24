@@ -1,5 +1,5 @@
 body {
-  background: red; }
+  background: green; }
 
 .wrapper {
   font-size: 18px;
@@ -25,3 +25,7 @@ body {
       margin-bottom: 10px;
       background: #eee;
       padding-left: 15px; }
+      .wrapper ul li a {
+        color: green; }
+        .wrapper ul li a:hover {
+          color: red; }
