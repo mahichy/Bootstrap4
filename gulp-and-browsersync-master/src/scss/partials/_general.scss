@@ -41,11 +41,17 @@ body {
 
 }
 
+@mixin button($color: white) {
+	background: black;
+	padding: 10px;
+	display: block;
+}
+
 .blog {
 	width: 80vw;
 	margin: 0 auto;
 	&__h1{
-		color: $main-color;
+		color: $color;
 	}
 	&__p{
 		color: gray;
@@ -55,16 +61,11 @@ body {
 	}
 
 	&__read-more{
-		background: black;
-		color: white;
-		padding: 10px;
-		display: block;
+		@include button;
 
 		&--unavailable {
-			background: yellow;
-			color: gray;
-			padding: 10px;
-			display: block;
+			@include button(gray);	
+			
 			cursor: not-allowed;
 		}
 
