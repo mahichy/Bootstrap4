@@ -29,3 +29,24 @@ body {
         color: green; }
         .wrapper ul li a:hover {
           color: red; }
+
+.blog {
+  width: 80vw;
+  margin: 0 auto; }
+  .blog__h1 {
+    color: green; }
+  .blog__p {
+    color: gray; }
+    .blog__p__a {
+      color: red; }
+  .blog__read-more {
+    background: black;
+    color: white;
+    padding: 10px;
+    display: block; }
+    .blog__read-more--unavailable {
+      background: yellow;
+      color: gray;
+      padding: 10px;
+      display: block;
+      cursor: not-allowed; }
