@@ -4,10 +4,10 @@ body {
 .wrapper {
   font-size: 18px;
   color: #333;
-  padding: 50px;
-  height: calc( 100vh - 200px);
+  padding: 1em 50;
+  height: 100%;
   width: 80%;
-  margin: 0 auto;
+  margin: auto;
   margin-top: 50px;
   border-radius: 5px;
   background: whitesmoke; }
@@ -24,7 +24,10 @@ body {
       line-height: 50px;
       margin-bottom: 10px;
       background: #eee;
-      padding-left: 15px; }
+      padding-left: 15px;
+      transition: all .25s; }
+      .wrapper ul li:hover {
+        background: #d5d5d5; }
       .wrapper ul li a {
         color: green; }
         .wrapper ul li a:hover {
@@ -50,3 +53,14 @@ body {
       display: block;
       color: gray;
       cursor: not-allowed; }
+
+.list {
+  margin-top: 3.125em;
+  width: 60%; }
+  .list__h1 {
+    font-size: 2.25em; }
+  .list__ul {
+    margin-left: 0 !important;
+    width: 100% !important; }
+    .list__ul__li {
+      color: #333; }

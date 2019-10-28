@@ -1,0 +1,15 @@
+
+.list{
+	margin-top: em(50);
+	width: 60%;
+	&__h1{
+		font-size: em(36);
+	}
+	&__ul{
+		margin-left: 0 !important;
+		width: 100% !important;
+		&__li{
+			color: $li-color
+		}
+	}
+}
